@@ -23,6 +23,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TF_MIN: ${{ vars.TF_MIN || '60' }}
           SYMBOLS: ${{ vars.SYMBOLS || 'BTC,ETH,SOL,DOGE' }}
       - name: Save data and dashboard
         run: |

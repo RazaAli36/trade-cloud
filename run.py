@@ -16,7 +16,7 @@ RISK_PCT = float(os.getenv("RISK_PCT", "1"))
 MAX_OPEN = int(os.getenv("MAX_OPEN", "3"))
 ALLOW_SHORT = os.getenv("ALLOW_SHORT", "1") == "1"
 DAILY_LIMIT_R = -3.0
-HOLD_SEC = 24 * 3600
+HOLD_SEC = 96 * core.TF_MIN * 60
 
 
 def load():
@@ -188,7 +188,7 @@ def scan(st, data):
                       notional=round(notional, 2), ai=note, opened=int(time.time()))
             st["next_id"] += 1
             st["open"].append(tr)
-            tg(f"{'🟢 BUY' if sig['side'] == 'BUY' else '🔴 SELL'} {sym} 15m [{name}] PAPER trade #{tr['id']}\n"
+            tg(f"{'🟢 BUY' if sig['side'] == 'BUY' else '🔴 SELL'} {sym} {core.TF_MIN}m [{name}] PAPER trade #{tr['id']}\n"
                f"Entry {sig['entry']:.6g}  SL {sig['sl']:.6g}  TP {sig['tp']:.6g}  RR {sig['rr']}\n"
                f"Risk {tr['risk_usd']} USD. {sig['note']}. {('AI: ' + note) if note else ''}\nSimulated; not financial advice.")
 

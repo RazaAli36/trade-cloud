@@ -2,7 +2,7 @@
 import os
 import time
 
-TF_MIN = 15
+TF_MIN = int(os.getenv("TF_MIN", "60"))
 FEE_PCT = float(os.getenv("FEE_PCT", "0.1"))  # round-trip fees + slippage, in percent
 SYMBOLS = {"BTC": ("XBTUSD", "BTC-USD"), "ETH": ("ETHUSD", "ETH-USD"), "SOL": ("SOLUSD", "SOL-USD"),
            "DOGE": ("XDGUSD", "DOGE-USD"), "XRP": ("XRPUSD", "XRP-USD")}

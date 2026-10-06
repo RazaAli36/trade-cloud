@@ -77,7 +77,7 @@ def render(st, path):
 <div class="card"><h2>Open positions</h2><table><tr><th>ID</th><th>Sym</th><th>Side</th><th>Strategy</th><th>Entry</th><th>SL</th><th>TP</th><th>RR</th></tr>{open_rows}</table></div>
 <div class="card"><h2>Last 20 closed</h2><table><tr><th>ID</th><th>Sym</th><th>Side</th><th>Strategy</th><th>R</th><th>USD</th><th>Exit</th></tr>{closed_rows}</table></div>
 <div class="card"><h2>Strategies (backtest vs live paper)</h2><table><tr><th>Name</th><th>BT n</th><th>BT win</th><th>BT avg</th><th>Live n</th><th>Status</th></tr>{strat_rows}</table>
-<div class="m">Backtests use only ~1 week of 15m data and are noisy. Strategies with a clearly negative result are blocked automatically.</div></div>
+<div class="m">Backtests use only limited recent data and are noisy. Strategies with a clearly negative result are blocked automatically.</div></div>
 <div class="card"><h2>Market scan</h2><table><tr><th>Sym</th><th>Price</th><th>Trend</th><th>ATR</th><th>Feed</th></tr>{scan_rows}</table></div>
 <div class="m">Past results do not predict future profit. No strategy wins every trade.</div></body></html>"""
     path.parent.mkdir(exist_ok=True)
