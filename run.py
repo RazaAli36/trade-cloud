@@ -193,8 +193,22 @@ def scan(st, data):
                f"Risk {tr['risk_usd']} USD. {sig['note']}. {('AI: ' + note) if note else ''}\nSimulated; not financial advice.")
 
 
+def apply_cash(st):
+    """Simulated deposit/withdraw, triggered only by you via the workflow's manual-run input."""
+    try:
+        amt = float(os.getenv("PAPER_CASH", "0") or 0)
+    except ValueError:
+        amt = 0
+    if amt and st["equity"] + amt >= 0:
+        st["equity"] = round(st["equity"] + amt, 2)
+        st["start_equity"] = round(st["start_equity"] + amt, 2)
+        st.setdefault("ledger", []).append([int(time.time()), amt])
+        tg(f"{'Deposited' if amt > 0 else 'Withdrew'} {abs(amt):,.2f} simulated USD. Equity {st['equity']}")
+
+
 def main():
     st = load()
+    apply_cash(st)
     data = {s: core.fetch_candles(s) for s in SYMS}
     update_open(st, data)
     if time.time() - st.get("bt_ts", 0) > 86400:
@@ -206,7 +220,7 @@ def main():
         st["curve"] = st["curve"][-3000:]
     st["last_run"] = now
     save(st)
-    dashboard.render(st, ROOT / "docs" / "index.html")
+    dashboard.render(st, ROOT / "docs" / "index.html", data)
     print("ok", {k: len(v) for k, v in data.items()}, "open", len(st["open"]), "closed", len(st["closed"]))
 
 

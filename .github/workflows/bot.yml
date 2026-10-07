@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
+    inputs:
+      paper_cash:
+        description: "Simulated deposit (+) or withdraw (-) in USD. Only repo owner can run this."
+        required: false
+        default: "0"
 permissions:
   contents: write
 concurrency:
@@ -24,6 +29,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TF_MIN: ${{ vars.TF_MIN || '60' }}
+          PAPER_CASH: ${{ github.event.inputs.paper_cash || '0' }}
           SYMBOLS: ${{ vars.SYMBOLS || 'BTC,ETH,SOL,DOGE' }}
       - name: Save data and dashboard
         run: |
