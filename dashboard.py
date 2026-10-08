@@ -21,7 +21,7 @@ canvas{width:100%;display:block}.chips span{display:inline-block;border:1px soli
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px}.tile{border-radius:6px;padding:6px;border:1px solid var(--l)}.tile b{display:block;font-size:13px}.tile small{color:var(--m)}
 table{width:100%;border-collapse:collapse}th,td{padding:3px 5px;border-bottom:1px solid var(--l);text-align:left;white-space:nowrap}th{color:var(--m);font-weight:400}.sc{overflow-x:auto}
 .log div{padding:2px 0;border-bottom:1px solid var(--l);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-</style></head><body>
+</style><style>canvas,svg{max-height:320px!important}</style></head><body>
 <div class="top"><h1><span id="dot" class="dot"></span>TRADE-CLOUD // AI TRADER <span class="badge">PAPER: SIMULATED MONEY, REAL PRICES</span></h1><div class="m" id="clock"></div></div>
 <div class="grid">
 <div class="p c4"><h2>Net P&amp;L (simulated)</h2><div class="big" id="pnl">$0</div><div class="m" id="sub"></div>
