@@ -1,3 +1,6 @@
 __pycache__/
 data/state_live.json
 data/state_testnet.json
+__pycache__/
+data/state_live.json
+data/state_testnet.json
